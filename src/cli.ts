@@ -7,6 +7,9 @@ import { loadSession, getLatestSessionId } from "./session.js";
 import { listMemories } from "./memory.js";
 import { discoverSkills, resolveSkillPrompt, getSkillByName, executeSkill } from "./skills.js";
 import type { PermissionMode } from "./tools.js";
+import { loadDotEnv } from "./env.js";
+
+loadDotEnv();
 
 interface ParsedArgs {
   permissionMode: PermissionMode;
@@ -323,8 +326,8 @@ async function main() {
   if (!resolvedApiKey) {
     printError(
       `API key is required.\n` +
-        `  Set ANTHROPIC_API_KEY (+ optional ANTHROPIC_BASE_URL) for Anthropic format,\n` +
-        `  or OPENAI_API_KEY + OPENAI_BASE_URL for OpenAI-compatible format.`
+      `  Set ANTHROPIC_API_KEY (+ optional ANTHROPIC_BASE_URL) for Anthropic format,\n` +
+      `  or OPENAI_API_KEY + OPENAI_BASE_URL for OpenAI-compatible format.`
     );
     process.exit(1);
   }
